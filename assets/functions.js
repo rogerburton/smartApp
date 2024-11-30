@@ -56,3 +56,20 @@
         }
     }
 
+    const w_fetchBlob = new Blob([w_fetch], { type: 'application/javascript' });
+    const w_fetchURL = URL.createObjectURL(w_fetchBlob);
+    // Création du worker de récupération des fichiers XSD
+    const w_fetchWorker = new Worker(w_fetchURL);
+
+    // Gestion des messages du worker
+    w_fetchWorker.onmessage = function(event) {
+        const { success, xsdDoc, error } = event.data;
+        if (success) {
+            // Effectuer le parsing dans le thread principal
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(xsdDoc, "application/xml");
+            SAM({xelem:xmlDoc})
+        } else {
+            console.error('Erreur lors de la récupération du XSD:', error);
+        }
+    };
