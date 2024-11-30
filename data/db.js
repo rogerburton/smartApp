@@ -17,3 +17,4 @@ const mainXSD=['UBL-Invoice-2.4.xsd','UBL-ApplicationResponse-2.4.xsd', 'UBL-Att
              , 'UBL-Reminder-2.4.xsd', 'UBL-RemittanceAdvice-2.4.xsd', 'UBL-RequestForQuotation-2.4.xsd'
              , 'UBL-RetailEvent-2.4.xsd', 'UBL-SelfBilledCreditNote-2.4.xsd', 'UBL-SelfBilledInvoice-2.4.xsd'];
 const partialURL = "https://cdn.jsdelivr.net/gh/rogerburton/smartApp@main/xsd/" ;
+const dataSAM=[];
