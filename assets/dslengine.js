@@ -229,5 +229,6 @@ function compileTemplate(dsl) {
     return interpolateKeepUnknown(tpl.innerHTML, data);
   };
 }
+;
 //END moteur DSL---------------------
   
