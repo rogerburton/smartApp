@@ -5,6 +5,8 @@
   "required": [
     "Party"
     ],
+  "additionalProperties": false,
+  "type": "object",
   "properties": {
     "_D": {
       "description": "Document ABIE XML namespace string",
@@ -42,9 +44,7 @@
           "title": "Party. Party",
           "description": "The party.",
           "$ref": "../common/UBL-CommonAggregateComponents-2.3.json#/definitions/Party"
-          },
-      "additionalProperties": false,
-      "type": "object"
+          }
       }
     }
   }
