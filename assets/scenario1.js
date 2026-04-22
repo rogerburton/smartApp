@@ -82,6 +82,9 @@ end
 subgraph user[Utilisateur]
   ex10[par ex.: le titulaire d'une UP]
 end
+subgraph regulator[Régulateurs]
+  ex101[Smart notamment]
+end
 subgraph sg_texte2[Les plans containers]
     texte1["\`
 Notre modèle d'affaires,selon moi en même temps modèles organisationnel, conceptuel et du système applicatif repose sur plusieurs plans.
@@ -89,7 +92,9 @@ Notre modèle d'affaires,selon moi en même temps modèles organisationnel, conc
 end
 user -- entrée des spécifications de l'échange --> sg_saisie_doc
 sg_projections -- déclarations --> recipient
-sg_rules -- spécifie --> sg_projections
+sg_projections -- appelle --> sg_rules
+recipient <-- parfois les mêmes --> regulator
+regulator <-- contrôle et spécifie --> sg_plan_conformite
 sg_plan_conformite -- spécifie --> sg_rules
 sg_plan_conformite -- spécifie --> sg_projections
 sg_plan_rea -- appelle --> sg_rules
@@ -97,10 +102,6 @@ sg_plan_conformite -- spécifie --> sg_plan_rea
 `,
 
 
-
-
-
-  
 1000 : `flowchart LR
 subgraph sg_rules[Rules]
     subgraph sg_events_rules[EventsRules]
