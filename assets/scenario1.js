@@ -1,5 +1,5 @@
 var scenario1={
-g1 : `flowchart LR
+1 : `flowchart LR
 subgraph sg_etape1[REA - une présentation]
   subgraph rea_doc_initial2[Ex. : achat par une UP]
           SD_i2000[FOU FFF001]
@@ -35,7 +35,7 @@ goods and services\`"]
   end
 end
 `,
-g2 : `flowchart LR
+2 : `flowchart LR
 subgraph recipient[Les destinataires des déclarations]
   ex200[par ex.: ONSS, client, salarié, Intervat, ...]
 end
@@ -101,7 +101,7 @@ sg_plan_conformite -- spécifie --> sg_plan_rea
 
 
   
-gx : `flowchart LR
+1000 : `flowchart LR
 subgraph sg_rules[Rules]
     subgraph sg_events_rules[EventsRules]
       RL_e1000[règle delai]
