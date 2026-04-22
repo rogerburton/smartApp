@@ -1,11 +1,13 @@
-var g2 = `flowchart LR
-subgraph sg_rules[Rules]
-    subgraph sg_events_rules[EventsRules]
-      RL_e1000[règle delai]
-      RL_e1001[règle ...]
-      RL_e1002[règle ...]
-    end
-end`;
+var g2 = ` `flowchart LR
+subgraph sg_REA[REA - une présentation]
+  texte1["`
+Le modèle REA est absé sur un triple Ressources/Agents/Evènements.
+Un agent A possède (owns ou plus neutre :  has custody) des ressources X.
+Un autre agent B possède des ressources Y.
+Chaque agent convoite (covets, desires, wants) les ressources de l'autre.
+La négociation consiste à s'accorder entre agent sur l'équivalence des ressources à échanger, en nature, qualité et quantité.
+  `"]
+end``;
 
 var g1 = `flowchart LR
 subgraph sg_rules[Rules]
