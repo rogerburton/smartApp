@@ -5,7 +5,7 @@
 const whiteboardView = {
     x: 0,
     y: 0,
-    scale: 1,
+    scale: 0.2,
     minScale: 0.05,
     maxScale: 10
 };
@@ -208,4 +208,139 @@ async function dessinerSchema(definition) {
         container.innerHTML = "<pre style='color:red'>" + error + "</pre>";
     }
 }  
-;
+  
+  function clearWhiteboard() {
+      const surface = document.getElementById('whiteboard-surface');
+      if (!surface) return;
+
+      surface.innerHTML = '';
+
+      // reset de la vue
+      setWhiteboardView({ x: 0, y: 0, scale: 0.2 });
+  }
+
+  async function ajouterDiagramme(definition, x = 0, y = 0) {
+    const surface = dom['whiteboard-surface'];
+
+    if (!surface) {
+        console.error("whiteboard-surface introuvable");
+        return null;
+    }
+
+    try {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'mermaid-diagram';
+        wrapper.style.left = `${x}px`;
+        wrapper.style.top = `${y}px`;
+
+        const uniqueId = 'svg-' + Date.now() + '-' + Math.floor(Math.random() * 1000000);
+        const { svg } = await mermaid.render(uniqueId, definition);
+
+        wrapper.innerHTML = svg;
+
+        const svgElement = wrapper.querySelector('svg');
+        if (!svgElement) {
+            console.error("Impossible de trouver le SVG généré.");
+            return null;
+        }
+
+        let minX = 0;
+        let minY = 0;
+
+        const viewBox = svgElement.getAttribute('viewBox');
+        if (viewBox) {
+            const parts = viewBox.trim().split(/[\s,]+/).map(Number);
+            if (parts.length === 4) {
+                const [vbMinX, vbMinY, vbWidth, vbHeight] = parts;
+                minX = vbMinX;
+                minY = vbMinY;
+
+                svgElement.setAttribute('width', vbWidth);
+                svgElement.setAttribute('height', vbHeight);
+            }
+        }
+
+        svgElement.style.display = 'block';
+        svgElement.style.maxWidth = 'none';
+
+        wrapper.style.left = `${x - minX}px`;
+        wrapper.style.top = `${y - minY}px`;
+
+        surface.appendChild(wrapper);
+        rendreObjetDraggable(wrapper);
+        applyWhiteboardView();
+
+        return wrapper;
+
+    } catch (error) {
+        console.error("Erreur Mermaid :", error);
+        return null;
+    }
+} 
+  
+function ajouterTexte(contenu, x = 0, y = 0) {
+    const surface = document.getElementById('whiteboard-surface');
+    if (!surface) return null;
+
+    const el = document.createElement('div');
+    el.className = 'whiteboard-text';
+    el.innerText = contenu;
+    el.style.position = 'absolute';
+    el.style.left = `${x}px`;
+    el.style.top = `${y}px`;
+
+    surface.appendChild(el);
+    rendreObjetDraggable(el);
+
+    return el;
+}
+  
+function rendreObjetDraggable(el) {
+    let isDragging = false;
+    let startMouseX = 0;
+    let startMouseY = 0;
+    let startLeft = 0;
+    let startTop = 0;
+
+    el.addEventListener('mousedown', (event) => {
+        // bouton gauche uniquement
+        if (event.button !== 0) return;
+
+        // empêche le drag global du whiteboard
+        event.stopPropagation();
+        event.preventDefault();
+
+        isDragging = true;
+
+        startMouseX = event.clientX;
+        startMouseY = event.clientY;
+
+        startLeft = parseFloat(el.style.left) || 0;
+        startTop = parseFloat(el.style.top) || 0;
+
+        el.classList.add('dragging-object');
+    });
+
+    window.addEventListener('mousemove', (event) => {
+        if (!isDragging) return;
+
+        const dxScreen = event.clientX - startMouseX;
+        const dyScreen = event.clientY - startMouseY;
+
+        // IMPORTANT :
+        // l'objet est dans une surface zoomée,
+        // donc on convertit le déplacement écran en déplacement "whiteboard"
+        const dxBoard = dxScreen / whiteboardView.scale;
+        const dyBoard = dyScreen / whiteboardView.scale;
+
+        el.style.left = `${startLeft + dxBoard}px`;
+        el.style.top = `${startTop + dyBoard}px`;
+    });
+
+    window.addEventListener('mouseup', () => {
+        if (!isDragging) return;
+        isDragging = false;
+        el.classList.remove('dragging-object');
+    });
+}
+  
