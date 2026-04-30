@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "title": "ontology_v0.9",
+  "saved": "2026-04-30T09:35:01.361Z",
+  "blocks": [
+    {
+      "num": 1,
+      "type": "mermaid",
+      "x": 0,
+      "y": 8.69739,
+      "w": 604,
+      "h": 410,
+      "data": {
+        "code": "flowchart LR\n  subgraph sg1[ ]\n  direction TB\n   root[Nature des ressources échangées]\n   node1[money]\n   node2[general goods and services]\n   node3[copyrights]\n   node4[property rental]\n   node5[shares]\n   node6[...]\n   node7[taxes, contributions, fines]\n   node8[quitus]\n   node9[money]\n   node10[legal declarations]\n   node11[declaration]\n   node12[quitus]\n   root --- node1\n   root --- node7\n   root --- node10\n   node7--- node8\n   node10--- node12\n   node1 <-- in exchange for --> node2\n   node1 <-- in exchange for --> node3\n   node1 <-- in exchange for --> node4\n   node1 <-- in exchange for --> node5\n   node1 <-- in exchange for --> node6\n   node8 <-- in exchange for --> node9\n   node12 <-- in exchange for --> node11\n  end\n  subgraph sg2[info]\n    description1[\"`L'ensemble du système est construit autour d'une ontologie extrêmement simple des échanges d'affaires et du modèle sketchonomic qui sera présenté au bloc 2`\"]\n    description2[\"`La nature des ressources est définie à un haut niveau, et vise à cerner des régimes juridiques suffisamment distincts pour devoir être traités spécifiquement. Une vingtaine de types d'échanges devraient suffire à couvrir nos besoins d'affaires.`\"]\n  end",
+        "title": "Ontologie des échanges"
+      }
+    },
+    {
+      "num": 2,
+      "type": "mermaid",
+      "x": 654.095,
+      "y": 1.07744,
+      "w": 683,
+      "h": 499,
+      "data": {
+        "code": "flowchart TB\nsubgraph sg2[évènement : commitment ]\ndirection TB\n    a3[Agent A]\n    a4[Agent B]\n    c[engagement]\n    r3[resources X]\n    r4[resources Y]\n    e[principe d'équivalence]\na3 --- c\nc --- a4\nr3 --- e\ne --- r4\ne <-- substance de l'accord --> c\nend\nsubgraph sg1[le modèle de base d'un échange]\n    a1[Agent A]\n    a2[Agent B]\n    r1[resources X]\n    r2[resources Y]\na1 -- owns --> r1\na1 -- wants --> r2\na2 -- owns --> r2\na2 -- wants --> r1\nend\nsubgraph sg3[infos]\ndescription1[\"`Ce modèle dit sketchonomic - nom trouvé par A. Darnowski - représente une version en même temps simplifiée et étendue du modèle REA : ressources, évènements, agents`\"]\nend",
+        "title": "Sketchonomic"
+      }
+    },
+    {
+      "num": 3,
+      "type": "mermaid",
+      "x": 41.6305,
+      "y": 522.557,
+      "w": 1057,
+      "h": 748,
+      "data": {
+        "code": "flowchart TB\n  subgraph sg0[ ]\n    node1[\"`**ontology : nature of resources exchanged : money in exchange for general goods and services**`\"]\nsubgraph ex1[exemple1]\n  direction TB\n  subgraph sg1[saisie initiale documentaire]\n    a1[Agent A]\n    a2[Agent B]\n    r1[general goods and services]\n    r2[money ]\na1 -- owns --> r1\na1 -- wants --> r2\na2 -- owns --> r2\na2 -- wants --> r1\n  end\n  subgraph sg2[sketchonomic secondaire : TVA]\n    a3[Agent A]\n    a4[SPF - TVA]\n    r3[declaration]\n    r4[quitus]\na3 -- owns --> r3\na3 -- wants --> r4\na4 -- owns --> r4\na4 -- wants --> r3\nend\n  subgraph sg3[sketchonomic secondaire : TVA]\n    a5[Agent B]\n    a6[SPF - TVA]\n    r5[declaration]\n    r6[quitus]\na5 -- owns --> r5\na5 -- wants --> r6\na6 -- owns --> r5\na6 -- wants --> r6\n  end\nsg1 -- entraîne sous condition --> sg2\nsg1 -- entraîne sous condition --> sg3\nend\nsubgraph ex2[exemple2]\n  direction TB\n  subgraph sg10[saisie initiale documentaire]\n    a10[Agent A]\n    a20[Agent B]\n    r10[general goods and services]\n    r20[money ]\na10 -- owns --> r10\na10 -- wants --> r20\na20 -- owns --> r20\na20 -- wants --> r10\n  end\n  subgraph sg20[sketchonomic optionnel : CMF 6.5%]\n    a30[Agent A]\n    a40[Smart]\n    r30[money]\n    r40[general goods and services]\na30 -- owns --> r30\na30 -- wants --> r40\na40 -- owns --> r40\na40 -- wants --> r30\nend\n  subgraph sg30[sketchonomic optionnel: traitement TVA mutualisé]\n    a50[Agent A]\n    a60[Smart]\n    r50[money]\n    r60[quitus]\na50 -- owns --> r50\na50 -- wants --> r60\na60 -- owns --> r50\na60 -- wants --> r60\n  end\nsg10 -- entraîne sous condition --> sg20\nsg10 -- entraîne sous condition --> sg30\nend\nend\n\n\n\n  subgraph info[infos]\n    info1[\"`Un échange, spécifié dans une saisie initiale documentaire, caractérisé par la nature des ressources - voir bloc 1, du fait même de cette caractérisation, convoque plusieurs sketchonomics : ainsi la vente simple d'un bien/service générique implique un traitement TVA : exemple 1`\"]\n    info2[\"`Un échange peut aussi convoquer d'autres échnages, pour des raisons qui ne sont plus légales mais propres au contexte business/corporate : ainsi la vente simple d'un bien/service générique par une UP chez Smart entraîne un prélèvement de 6.5% sur le montant facturé HTVA et un traitement mutualisé de la tva : exemple 2`\"]\nend",
+        "title": "Scenario sketchonomic"
+      }
+    },
+    {
+      "num": 4,
+      "type": "text",
+      "x": 1165.21,
+      "y": 556.27,
+      "w": 366,
+      "h": 277,
+      "data": {
+        "content": "Dans cette scène d'affaires (le contrat de travail), la saisie initiale documentaire de l'échange (les données substantielles du contrat de travail) entre l'employeur et le salarié entraînera des sketchnonomics avec l'ONSS, l'ONVA (sous condition), le fisc (précompte prof.), peut-être un sketchonomic spécifique pour le pécule de sortie employé, ou pour les frais propres à l'employeur, etc.",
+        "title": "Autre exemple : le contrat de travail (ontology : money in exchange for work)",
+        "color": "#ffffff"
+      }
+    },
+    {
+      "num": 5,
+      "type": "text",
+      "x": 510.694,
+      "y": 1302.37,
+      "w": 464,
+      "h": 483,
+      "data": {
+        "content": "A ce stade, tous les échanges peuvent être ramenés à un item d'une ontologie simple et réduite en nombre, à partir duquel l'on peut modéliser à partir du même pattern élémentaire à quatre coins (agent, agent, ressources, ressources) une scène d'affaires complexe où plusieurs instance de ce pattern peuvent s'enchaîner, parfois sous condition (on verra plus loin la question des \"règles\").\nOn notera que ce principe de modélisation (ontologie + pattern + dissection d'un échange pour en faire émerger les patterns \"masqués\") doit être appliqué pour les deux parties d'un échange, dès lors qu'un système X (par exemple celui de Smart) est mandaté par ces deux parties : une entité de notre groupe peut être cliente d'une autre entité du même groupe, par exemple.\n\nCette méthode de modélisation permet de décrire finement et complètement toutes les scènes d'affaires possibles que nous traitons habituellement chez Smart, sans exception.",
+        "title": "Résumé intermédiaire",
+        "color": "#ffffff"
+      }
+    }
+  ]
+}
