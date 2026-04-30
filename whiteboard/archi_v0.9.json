@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "title": "archi_v0.9",
+  "saved": "2026-04-30T12:15:35.467Z",
+  "blocks": [
+    {
+      "num": 1,
+      "type": "mermaid",
+      "x": 0,
+      "y": 0,
+      "w": 1915,
+      "h": 866,
+      "data": {
+        "code": "flowchart LR\n\n  %% --- Définition des Styles ---\n  classDef external fill:turquoise, stroke:#333,stroke-width:2px,color:#333, padding:5px\n  classDef container fill:#1168bd,stroke:#0b4884,stroke-width:2px,color:#fff\n  classDef component fill:#f3f3f3,stroke:#333,stroke-width:1px,color:#333\n  classDef logic fill:#fff4dd,stroke:#d4a017,stroke-width:1px,color:#333\n\n  %% --- Acteurs Externes ---\n  subgraph user [👤 Utilisateurs initiaux]\n    node_user[...]\n  end\n  class user external\n\n  subgraph smart [🏢 Smart : Régulateur privé]\n    node_smart[Service dédié ???]\n  end\n  class smart external\n\n  subgraph regul[🏢 Régulateurs externes]\n    node_regul[...]\n  end\n  class regul external\n\n  subgraph recipent [🏛️ Destinataires des déclarations]\n    node_recipent[...]\n  end\n  class recipent external\n\n  %% --- Système Principal ---\n  subgraph C4 [Container : Système de Conformité]\n    direction LR\n\n    subgraph sg_conformite [Régulation de la Conformité]\n      direction LR\n      subgraph sg_reg_decl [Régulation déclarative]\n        normes[Entrepôt des normes]\n      end\n      subgraph sg_reg_biz [Régulation business]\n        normes_biz[Idem...]\n      end\n    end\n    class sg_conformite container\n\n    subgraph sg_rules [Moteur de Règles]\n      direction TB\n      biz_rules[businessRules]\n      legal_rules[legalRules]\n      calc_rules[calculus]\n    end\n    class sg_rules logic\n\n    subgraph sg_core [Cœur Métier]\n      direction TB\n      \n      subgraph sg_scene [Scène d'affaires]\n        subgraph sg_plan_rea [ ]\n          direction LR\n          events[Évènements]\n          ssec[sketchonomics secondaires]\n          sadd[sketchonomics additionnels]\n        end\n        \n        subgraph sg_saisie [Saisie documentaire : sketchonomic initial]\n          agentA[Agent A]\n          agentB[Agent B]\n          resX[Resource X]\n          resY[Resource Y]\n          \n          agentA -- owns --> resX\n          agentA -- wants --> resY\n          agentB -- owns --> resY\n          agentB -- wants --> resX\n        end\n      end\n\n      subgraph sg_proj [Projections]\n        p_compta[Projection comptable]\n        p_decl[Projection déclarative]\n      end\n    end\n  end\n\n  %% --- Liaisons ---\n  regul <-- parfois les mêmes --> recipent\n  user ---> sg_saisie\n  p_decl ---> recipent\n  sg_scene ---> sg_proj\n  sg_conformite ---> sg_rules\n  sg_reg_decl ---> sg_proj\n  sg_reg_biz ---> sg_scene\n  smart ---> sg_conformite\n  regul ---> sg_conformite\n  sg_rules ---> sg_core\n  sg_saisie ---> sg_plan_rea \n  \n\n\n  %% Application des classes aux composants internes\n  class normes,normes_biz,biz_rules,legal_rules,calc_rules,events,tva,cmf,p_compta,p_decl component",
+        "title": ""
+      }
+    }
+  ]
+}

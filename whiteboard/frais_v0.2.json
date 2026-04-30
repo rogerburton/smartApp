@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "title": "frais",
+  "saved": "2026-04-30T13:19:31.841Z",
+  "blocks": [
+    {
+      "num": 1,
+      "type": "mermaid",
+      "x": 0,
+      "y": 0,
+      "w": 2113,
+      "h": 955,
+      "data": {
+        "code": "stateDiagram\n   direction TB\n    Start: Q Admissibilité d'une dépense ?\n    S1: Toutes les dépenses sont admissibles...\n\n    note left of Start\n        *admissible* signifie que Smart peut légalement la payer\n        ou vous la rembourser, puis la comptabiliser,\n        et enfin la déduire à 100% du chiffre d'affaires\n        pour établir la base imposable à l'impôt des sociétés (ISOC).\n    end note\n\n    note left of Start\n        PA, bien qu'asbl, est soumis à l'ISOC depuis 2018.\n        Vous n'en avez jamais entendu parler parce que, pour le moment,\n        nous payons cet impôt sur vos bénéfices via vos contributions.\n        Le taux d'imposition est en 2026 de 25% des bénéfices (base imposable),\n        calculés (pour être rapide) comme le total du chiffre d'affaires \n        déduction faite du total des charges.\n    end note\n\n    Start --> S1\n\n    note left of S1\n        Pour les sociétés (vs les asbl), la dépense doit viser\n        la conservation ou l'acquisition de revenus.\n        Mais dans les associations (asbl), le fisc dit : ...\n    end note\n\n    S1 --> S2: Sauf...\n    \n    state S2 {\n      direction LR\n        Direction: Dépenses à caractère privé\n        Luxe: Dépenses somptuaires (villas, yachts)\n        Fines: Amendes et pénalités\n        Vat: TVA non récupérable (si non liée à l'activité)\n\n        note left of Direction\n          *privé* signifie : \n          l'objet de la dépense\n          est utilisé/consommé \n          dans le périmètre strict du ménage,\n          au *seul* avantage de ses membres.\n        end note\n        note left of Fines\n          Bien entendu elles seront \n          payées et comptabilisées\n          si elles sont au nom de Smart,\n          mais on ne les vous remboursera pas\n          si elles sont à votre nom\n        end note\n\n    }\n\n    S2 --> Fin: Dépense refusée",
+        "title": ""
+      }
+    },
+    {
+      "num": 2,
+      "type": "mermaid",
+      "x": 303.516,
+      "y": 961.375,
+      "w": 1396,
+      "h": 558,
+      "data": {
+        "code": "stateDiagram-v2\n    direction TB\n\n    [*] --> Start\n    Start: Frais propre à l'employeur ?\n    \n    note right of Start\n        Charge incombant normalement à l'entreprise\n        et nécessaire à l'activité.\n    end note\n\n    Start --> Critères\n    \n    state Critères {\n        direction TB\n        C1: 1. Responsabilité de l'employeur\n        C2: 2. Caractère strictement professionnel\n        C3: 3. Réalité de la dépense (preuve)\n    }\n\n    Critères --> Justification\n\n    state Justification {\n        Sur_Pièces: Sur base réelle (factures)\n        OU\n        Forfait: Forfait (normes sérieuses)\n    }\n\n    note left of Justification\n        Attention : depuis 2022, \n        obligation de mentionner le montant \n        total sur la fiche fiscale 281.10.\n    end note\n\n    Justification --> Valide: ✅ Pas de cotisations ONSS/Fisc\n    Justification --> Risque: ❌ Requalification en salaire",
+        "title": ""
+      }
+    }
+  ]
+}
