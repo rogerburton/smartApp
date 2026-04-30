@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "title": "model",
+  "saved": "2026-04-29T17:53:06.629Z",
+  "blocks": [
+    {
+      "num": 1,
+      "type": "mermaid",
+      "x": 27.3438,
+      "y": 20.5781,
+      "w": 604,
+      "h": 410,
+      "data": {
+        "code": "flowchart TB\n  subgraph sg[ ]\n   root[Nature des ressources échangées]\n   node1[money]\n   node2[general goods and services]\n   node3[copyrights]\n   node4[property rental]\n   node5[shares]\n   node6[...]\n   node7[taxes, contributions, fines]\n   node8[quitus]\n   node9[money]\n   node10[legal declarations]\n   node11[declaration]\n   node12[quitus]\n   root --- node1\n   root --- node7\n   root --- node10\n   node7--- node8\n   node10--- node11\n   node1 <-- in exchange for --> node2\n   node1 <-- in exchange for --> node3\n   node1 <-- in exchange for --> node4\n   node1 <-- in exchange for --> node5\n   node1 <-- in exchange for --> node6\n   node8 <-- in exchange for --> node9\n   node11 <-- in exchange for --> node12\n  end\ndescription[\"`L'ensemble du système est construit autour d'une ontologie extrêmement simple des échanges d'affaires et du modèle sketchonomic qui sera présenté au bloc 2`\"]",
+        "title": "Ontologie des échanges"
+      }
+    },
+    {
+      "num": 2,
+      "type": "mermaid",
+      "x": 641.188,
+      "y": 22.5625,
+      "w": 480,
+      "h": 300,
+      "data": {
+        "code": "flowchart LR\nsubgraph sg[le modèle de base d'un échange]\n    a1[Agent A]\n    a2[Agent B]\n    r1[resources X]\n    r2[resources Y]\n\na1 -- owns --> r1\na1 -- wants --> r2\na2 -- owns --> r2\na2 -- wants --> r1\n\nend\n\ndescription[\"`Ce modèle dit sketchonomic - nom trouvé par A. Darnowski - représente une version en même temps simplifiée et étendue du modèle REA : ressources, évènements, agents`\"]",
+        "title": "Sketchonomic"
+      }
+    }
+  ]
+}
